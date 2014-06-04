@@ -1,10 +1,10 @@
 ## reduce transactions by category
 from datetime import datetime
 
-loc_offers = "raw\\offers.csv"
-loc_transactions = "raw\\transactions.csv"
+loc_offers = "data\\offers.csv"
+loc_transactions = "data\\transactions.csv"
 #loc_reduced = "shop\\reduced_category.csv" # will be created
-loc_reduced = "shop\\reduced_company.csv"
+loc_reduced = "data\\reduced_company.csv"
 
 def reduce_data(loc_offers, loc_transactions, loc_reduced):
 	start = datetime.now()
