@@ -40,7 +40,7 @@ def reduce_data(loc_offers, loc_transactions, loc_reduced):
       if e == 0:
         outfile.write( line ) #print header
       else:
-        #only write when if category in offers dict
+        #only write when if category or companys in offers dict
         if line.split(",")[3] in offers_cat or line.split(",")[4] in offers_co:
           outfile.write( line )
           reduced += 1
@@ -154,6 +154,7 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 					
 					features['total_spend'] += float( row[10] )
 					
+					## company
 					if offers[ history[2] ][3] == row[4]:
 						features['has_bought_company'] += 1.0
 						features['has_bought_company_q'] += float( row[9] )
@@ -177,8 +178,8 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 							features['has_bought_company_q_180'] += float( row[9] )
 							features['has_bought_company_a_180'] += float( row[10] )
 					
+					## category
 					if offers[ history[2] ][1] == row[3]:
-						
 						features['has_bought_category'] += 1.0
 						features['has_bought_category_q'] += float( row[9] )
 						features['has_bought_category_a'] += float( row[10] )
@@ -198,7 +199,9 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 						if date_diff_days < 180:
 							features['has_bought_category_180'] += 1.0
 							features['has_bought_category_q_180'] += float( row[9] )
-							features['has_bought_category_a_180'] += float( row[10] )				
+							features['has_bought_category_a_180'] += float( row[10] )
+
+					## brand
 					if offers[ history[2] ][5] == row[5]:
 						features['has_bought_brand'] += 1.0
 						features['has_bought_brand_q'] += float( row[9] )
